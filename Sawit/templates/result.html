@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detection Result</title>
+    <style>
+        body {
+            background-image: url('/static/3.jpg');
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #ffff;
+        }
+        .image-container {
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .button-container {
+            margin-top: 20px;
+            padding: 10px; /* Add padding for better spacing */
+        }
+        .btn {
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .detected-objects {
+            font-size: 24px; /* Adjust the font size */
+            color: #ff6347; /* Adjust the text color */
+            margin-top: 10px; /* Add margin to separate from the image */
+        }
+    </style>
+</head>
+<body>
+    <h1>Detection Result</h1>
+    {% if img_savename %}
+        <div class="image-container">
+            <img src="{{ url_for('static', filename=img_savename.split('static/')[1]) }}" alt="Detected Image">
+        </div>
+        <p class="detected-objects">Detected objects: {{ num_objects }}</p> <!-- Display number of detected objects -->
+    {% endif %}
+    <div class="button-container">
+        <a href="detect"><button class="btn btn-lg btn-primary btn-upload" type="submit">Back To Upload</button></a>
+    </div>
+</body>
+</html>
